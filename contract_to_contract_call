@@ -1,0 +1,36 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract calee {
+    function foo() public returns(string memory) {
+        return "this is foo";
+    }
+
+    function bar() public returns(string memory) {
+        return "this is bar";
+    }
+}
+
+interface ical{
+    function foo() external returns(string memory);
+}
+
+contract caller {
+   //method 1
+   function call1(calee _calee) public returns(string memory) {
+       return _calee.foo();
+   } 
+
+   //method 2
+    function call2(address _addr) public returns(string memory) {
+        return ical(_addr).foo();
+   }
+
+   //method3
+   function call3(address _addr) public returns(string memory) {
+       calee c = calee(_addr);
+       return c.foo();
+   } 
+
+
+}
