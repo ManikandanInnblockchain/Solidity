@@ -25,4 +25,9 @@ contract biscutFactory {
         Biscut biscut = (new Biscut){value : _val}(_name, _price);
         bis.push(biscut);
     }
+
+    function getContract(uint _indx) public view returns (string memory name, uint price, address owner, uint balance) {
+       Biscut b =  bis[_indx];
+       return (b.name(), b.price(), b.owner(), address(b).balance );
+    }
 }
